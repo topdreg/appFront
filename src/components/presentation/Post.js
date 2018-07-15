@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
-import config from './config';
+import config from '../../config';
 
 class Post extends Component {
 	constructor() {
@@ -19,11 +19,13 @@ class Post extends Component {
 
 	render() {
 		const imageHeight = Math.floor(this.state.screenWidth * 1.1);
-		const imageUri = "https://lh3.googleusercontent.com/SudjtPeGjqIyJoFxFCCBhf8_2JUfGcxHTMhPvePzwVh8WiTc5UgV4Q8wwSEp1ZZpxjuypmezRSgSLJ-nKIfsf5NaZu8" + "=s" + imageHeight + "-c";
+		const imageSelection = (this.props.item % 2 == 0) ? "https://lh3.googleusercontent.com/bLKvYYFu4zMpMBQtavQq_562KI9xpcaxNlGFVE2rAzRgMdNWE2s53E1DbCkGy-1CkJyDLjXMZnGJmjRPfGdBByqZzw" : "https://lh3.googleusercontent.com/SudjtPeGjqIyJoFxFCCBhf8_2JUfGcxHTMhPvePzwVh8WiTc5UgV4Q8wwSEp1ZZpxjuypmezRSgSLJ-nKIfsf5NaZu8";
+		const imageUri = imageSelection + "=s" + imageHeight + "-c";
 
 		const heartIconColor = this.state.liked ? "rgb(252,61,57)" : null;
+
 		return(
-			<View>
+			<View style={{ flex: 1, width: 100 + "%" }}>
 				<View style={styles.userBar}>
 					<View style={{ flexDirection: "row", alignItems: "center" }}>
 						<Image 
