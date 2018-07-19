@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Button, StyleSheet } from 'react-native';
+import config from "../../config";
 
 class Register extends Component {
 
@@ -22,7 +23,15 @@ class Register extends Component {
 	}
 
 	register() {
-		alert(JSON.stringify(this.state.credentials));
+		fetch(config.baseUrl + "signup", {
+			  method: 'POST',
+			  headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+				},
+			  body: JSON.stringify(this.state.credentials) 
+		});
+		this.props.navigation.navigate("main");
 	}
 
 	render() {
