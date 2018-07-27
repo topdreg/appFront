@@ -1,3 +1,4 @@
+'use strict';
 import React, { Component } from 'react';
 import {
 	  AppRegistry,
@@ -8,8 +9,21 @@ import {
 	  View
 } from 'react-native';
 import { RNCamera } from 'react-native-camera';
+import config from "../../config";
 
 class Camera extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			userId: this.props.navigation.state.params.user.data._id
+		}
+	}
+
+	componentDidMount() {
+		console.log(this.props.navigation.state.params.user.data._id);
+	}
+
 	render() {
 		return (
 			<View style={styles.container}>
@@ -37,9 +51,21 @@ class Camera extends Component {
 
 	takePicture = async function() {
 		if (this.camera) {
+			console.log("HEEEEEY");
 			const options = { quality: 0.5, base64: true};
-			const data = await this.camera.takePictureAsync(options)
-			console.log(data.uri);
+			const imageData = await this.camera.takePictureAsync(options)
+			const response = await fetch(
+				config.baseUrl + "/users/" + this.state.userId + "/photo", {
+					method: 'POST',
+					headers: {
+						Accept: 'application/json',
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(imageData) 
+			});
+			const myjson = await response.json;
+			console.log(JSON.stringify(myjson));
+		  console.log("HIIIII");
 		}
 	};
 }

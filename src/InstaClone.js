@@ -21,7 +21,9 @@ const MainStack = SwitchNavigator({
 
 class InstaClone extends Component {
 	render() {
-		return <MainStack />
+		return (
+			<MainStack />
+		)
 	}
 }
 

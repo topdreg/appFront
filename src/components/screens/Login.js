@@ -31,8 +31,11 @@ class Login extends Component {
 			  body: JSON.stringify(this.state.credentials) 
 		}).then((response) => response.json())
 			.then((responseJson) => {
-				if (responseJson.confirmation == 'success') {
-					this.props.navigation.navigate("main");
+				if (responseJson.confirmation === 'success') {
+					this.props.navigation.navigate({
+						routeName: "camera",
+						params: { user: responseJson }
+					});
 				}
 				else {
 					alert("Username/Password combination is incorrect")
@@ -41,6 +44,7 @@ class Login extends Component {
 	}
 
 	render() {
+		console.log("LOGIN");
 		return (
 			<View
 				style={{

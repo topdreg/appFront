@@ -1,3 +1,5 @@
+import { Dimensions } from "react-native";
+
 export default {
 	images: {
 		heartIcon: require('../../assets/heart.png'),
@@ -5,7 +7,8 @@ export default {
 		arrowIcon: require('../../assets/arrow.png')
 	},
 	styleConstants: {
-		rowHeight: 50
+		rowHeight: 50,
+		oneThirdWidth: Dimensions.get("window").width / 3
 	},
 	baseUrl: "http://10.0.2.2:3000/api/"
 };
