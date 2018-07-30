@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import config from '../../config';
 
 class Profile extends Component {
@@ -14,7 +14,13 @@ class Profile extends Component {
 
 	componentDidMount() {
 		this._navListener = this.props.navigation.addListener('didFocus', () => {
-			console.log(this.props.navigation.state.params);
+			if (this.props.navigation.state.params) {
+				let newPics = Object.assign([], this.state.profilePics);
+				newPics.push(this.props.navigation.state.params.newPic);
+				this.setState({
+					profilePics: newPics
+				});
+			}
 		});
 		fetch(`${config.baseUrl}photo?id=${this.state.userId}`, {
 			  method: 'GET',
@@ -40,28 +46,30 @@ class Profile extends Component {
 	render() {
 		const third = Dimensions.get("window").width / 3;
 		return (
-			<View 
-				style={{
-					height: 100+'%', 
-					width: 100+'%', 
-					flex: 1,
-					justifyContent: 'center',
-					alignItems: 'center'
-				}}
-				onPress={()=>{this.login();}}
-			>
-				<View style={styles.profilePicContainer}>
-					{this.state.profilePics.map((pic, i)=> {
-						return (
-							<Image
-								key={pic.id}
-								style={styles.profilePicThumb}
-								source={{ uri: "data:image/jpg;base64, " + pic.img }}
-							/>
-						);
-					})}
+			<ScrollView>
+				<View 
+					style={{
+						height: 100+'%', 
+						width: 100+'%', 
+						flex: 1,
+						justifyContent: 'center',
+						alignItems: 'center'
+					}}
+					onPress={()=>{this.login();}}
+				>
+					<View style={styles.profilePicContainer}>
+						{this.state.profilePics.map((pic, i)=> {
+							return (
+								<Image
+									key={pic.id}
+									style={styles.profilePicThumb}
+									source={{ uri: "data:image/jpg;base64, " + pic.img }}
+								/>
+							);
+						})}
+					</View>
 				</View>
-			</View>
+			</ScrollView>
 		)
 	}
 }
