@@ -30,8 +30,19 @@ class Register extends Component {
 					'Content-Type': 'application/json',
 				},
 			  body: JSON.stringify(this.state.credentials) 
-		});
-		this.props.navigation.navigate("main");
+		}).then((response) => response.json())
+			.then((responseJson) => {
+				if (responseJson.confirmation === 'fail') {
+					alert(responseJson.message);
+					this.setState ({
+						login: "",
+						password: ""
+					});
+				}
+				else {
+					this.props.navigation.navigate("main");
+				}
+			});
 	}
 
 	render() {

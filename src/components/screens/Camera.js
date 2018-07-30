@@ -63,8 +63,12 @@ class Camera extends Component {
 					},
 					body: JSON.stringify(imageData) 
 			});
-			const myjson = await response.json;
-			console.log(JSON.stringify(myjson));
+			const myjson = await response.json();
+			const { data } = myjson;
+			this.props.navigation.navigate("profile", {
+				newPic: data
+			});
+			console.log(myjson);
 		  console.log("HIIIII");
 		}
 	};

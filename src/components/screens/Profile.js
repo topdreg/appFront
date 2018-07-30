@@ -13,6 +13,9 @@ class Profile extends Component {
 	}
 
 	componentDidMount() {
+		this._navListener = this.props.navigation.addListener('didFocus', () => {
+			console.log(this.props.navigation.state.params);
+		});
 		fetch(`${config.baseUrl}photo?id=${this.state.userId}`, {
 			  method: 'GET',
 			  headers: {
@@ -24,6 +27,11 @@ class Profile extends Component {
 				this.setState({profilePics: responseJson.data})
 			});
 	}
+
+	componentWillUnmount() {
+		this._navListener.remove();
+	}
+
 
 	login() {
 		this.props.navigation.navigate('main');
