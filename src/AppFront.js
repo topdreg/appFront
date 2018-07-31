@@ -19,7 +19,7 @@ const MainStack = SwitchNavigator({
 	main: Tabs
 });
 
-class InstaClone extends Component {
+class AppFront extends Component {
 	render() {
 		return (
 			<MainStack />
@@ -27,4 +27,4 @@ class InstaClone extends Component {
 	}
 }
 
-export default InstaClone;
+export default AppFront;

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Button, StyleSheet } from 'react-native';
 import config from '../../config';
+import actions from '../../redux/actions';
+import { connect } from 'react-redux';
+
 class Login extends Component {
 
 	constructor(){
@@ -32,10 +35,8 @@ class Login extends Component {
 		}).then((response) => response.json())
 			.then((responseJson) => {
 				if (responseJson.confirmation === 'success') {
-					this.props.navigation.navigate({
-						routeName: "camera",
-						params: { user: responseJson }
-					});
+					this.props.userReceived(responseJson.data);
+					this.props.navigation.navigate("main");
 				}
 				else {
 					alert("Username/Password combination is incorrect")
@@ -93,4 +94,15 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default Login;
+const stateToProps = state => {
+	return {
+	}
+}
+
+const dispatchToProps = dispatch => {
+	return {
+		userReceived: (user) => dispatch(actions.userReceived(user))
+	}
+}
+
+export default connect(stateToProps, dispatchToProps)(Login);

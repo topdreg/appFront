@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { connect } from 'react-redux';
 import config from '../../config';
 
 class Profile extends Component {
@@ -7,7 +8,6 @@ class Profile extends Component {
 	constructor(){
 		super();
 		this.state = {
-			userId: "5b4e7e857612a9436cfd21c4",
 			profilePics: []
 		};
 	}
@@ -22,7 +22,7 @@ class Profile extends Component {
 				});
 			}
 		});
-		fetch(`${config.baseUrl}photo?id=${this.state.userId}`, {
+		fetch(`${config.baseUrl}photo?id=${this.props.user.id}`, {
 			  method: 'GET',
 			  headers: {
 					Accept: 'application/json',
@@ -175,5 +175,16 @@ const styles = StyleSheet.create({
 	}
 });
 
+const stateToProps = state => {
+	return {
+		user: state.account.user
+	}
+}
 
-export default Profile;
+const dispatchToProps = dispatch => {
+	return {
+	}
+}
+
+
+export default connect(stateToProps, dispatchToProps)(Profile);

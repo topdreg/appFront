@@ -15,13 +15,6 @@ class Camera extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			userId: this.props.navigation.state.params.user.data._id
-		}
-	}
-
-	componentDidMount() {
-		console.log(this.props.navigation.state.params.user.data._id);
 	}
 
 	render() {

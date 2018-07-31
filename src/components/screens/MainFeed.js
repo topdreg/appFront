@@ -8,7 +8,7 @@ class InstaClone extends Component {
 		return(
 			<View style={{ flex: 1, width: 100 + "%", height: 100 + "%" }}>
 				<View style={styles.tempNav}>
-					<Text>Instagram</Text>
+					<Text>AppFront</Text>
 					<PostFeed />
 				</View>
 			</View>
