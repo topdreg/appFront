@@ -55,8 +55,60 @@ class Profile extends Component {
 						justifyContent: 'center',
 						alignItems: 'center'
 					}}
-					onPress={()=>{this.login();}}
 				>
+				<View style={styles.profileInfo}>
+					<View style={{flexDirection: "row", width: 100+"%"}}>
+						<View style={{ 
+							flex: 3, 
+							height: 100, 
+							justifyContent: "center", 
+							alignItems: "center" 
+						}}>
+							<Image 
+								style={styles.userPic}
+								source={{ uri: "https://lh3.googleusercontent.com/HQ9EHTmd2Uie-1nZ24e5i2ObTDPHOyYI9XRY2UJVqfJTG_5kJhMkOVi0V5IyWQpOHgkL6LjbYITiyikao3yGDOiwTSI" 
+								}}
+						/>
+						</View>
+						<View style={{ flex: 7, height: 100 }}>
+							<View style={{flexDirection:"row", flex: 1}}>
+								<View style={styles.statCol}>
+									<Text>128</Text>
+									<Text>Posts</Text>
+								</View>
+								<View style={styles.statCol}>
+									<Text>265</Text>
+									<Text>Followers</Text>
+								</View>
+								<View style={styles.statCol}>
+									<Text>184</Text>
+									<Text>Following</Text>
+								</View>
+							</View>
+							<View style={{
+								flexDirection:"row", 
+								width: 100 + "%", 
+								flex: 1,
+								justifyContent:"center",
+								alignItems: "center",
+								backgroundColor: 'rgb(239, 239, 239)'
+							}}>
+								<Text>Edit Profile</Text>
+							</View>
+						</View>
+					</View>
+					<View style={{flexDirection: "column", width: 100+"%"}}>
+						<Text style={styles.fontBold}>Aaron Percival</Text>
+						<Text style={styles.fontSm}>A React Native Developer Struggling to Spell</Text>
+					</View>
+				</View>
+				<View style={styles.topBar}>
+					<View style={styles.topBarIcon}></View>
+					<View style={styles.topBarIcon}></View>
+					<View style={styles.topBarIcon}></View>
+					<View style={styles.topBarIcon}></View>
+					<View style={styles.topBarIcon}></View>
+				</View>
 					<View style={styles.profilePicContainer}>
 						{this.state.profilePics.map((pic, i)=> {
 							return (
@@ -83,6 +135,43 @@ const styles = StyleSheet.create({
 	profilePicThumb: {
 		width: config.styleConstants.oneThirdWidth,
 		height: config.styleConstants.oneThirdWidth	
+	},
+	profileInfo: {
+		width: 100 + "%",
+		height: 180,
+		display: 'flex',
+		flexDirection: 'column',
+		paddingVertical: 20
+	},
+	fontSm: {
+		fontSize: 16
+	},
+	fontBold: {
+		fontSize: 16,
+		fontWeight: 'bold'
+	},
+	userPic: {
+		height: 80,
+		borderRadius: 40,
+		width: 80
+	},
+	statCol: {
+		flexDirection: "column", 
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center"
+	},
+	topBar: {
+		height: config.styleConstants.rowHeight, 
+		width: 100 + "%",
+		borderTopWidth: StyleSheet.hairlineWidth,
+		borderBottomWidth: StyleSheet.hairlineWidth,
+		flexDirection: 'row'
+	},
+	topBarIcon: {
+		borderTopWidth: StyleSheet.hairlineWidth,
+		borderBottomWidth: StyleSheet.hairlineWidth,
+		flex: 1
 	}
 });
 
