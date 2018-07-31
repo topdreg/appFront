@@ -17,6 +17,7 @@ class Camera extends Component {
 		super(props);
 	}
 
+	//Largely taken from RNCamera docs
 	render() {
 		return (
 			<View style={styles.container}>
@@ -42,9 +43,9 @@ class Camera extends Component {
 		);
 	}
 
+	//function to take picture and then pass to appBack
 	takePicture = async function() {
 		if (this.camera) {
-			console.log("HEEEEEY");
 			const options = { quality: 0.5, base64: true};
 			const imageData = await this.camera.takePictureAsync(options)
 			const response = await fetch(
@@ -61,8 +62,6 @@ class Camera extends Component {
 			this.props.navigation.navigate("profile", {
 				newPic: data
 			});
-			console.log(myjson);
-		  console.log("HIIIII");
 		}
 	};
 }

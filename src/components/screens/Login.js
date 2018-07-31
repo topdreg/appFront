@@ -16,6 +16,7 @@ class Login extends Component {
 		};
 	}
 
+	//function to update state of login/password when typing text in field
 	updateText(text, field) {
 		let newCredentials = Object.assign(this.state.credentials);
 		newCredentials[field] = text;

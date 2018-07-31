@@ -14,6 +14,7 @@ class Register extends Component {
 		};
 	}
 
+	//function for updating state
 	updateText(text, field) {
 		let newCredentials = Object.assign(this.state.credentials);
 		newCredentials[field] = text;
@@ -22,6 +23,7 @@ class Register extends Component {
 		});
 	}
 
+	//connect to backend here
 	register() {
 		fetch(config.baseUrl + "signup", {
 			  method: 'POST',
